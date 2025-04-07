@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "View", "View\View.csproj", "{285E99BF-BD9F-462E-B090-4A97049A2B49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{37185329-3F81-445B-9A53-91748D610B0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{47D103C9-B2CB-41DB-9D44-210275FB494A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +19,19 @@ Global
 		{285E99BF-BD9F-462E-B090-4A97049A2B49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{285E99BF-BD9F-462E-B090-4A97049A2B49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{285E99BF-BD9F-462E-B090-4A97049A2B49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37185329-3F81-445B-9A53-91748D610B0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37185329-3F81-445B-9A53-91748D610B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37185329-3F81-445B-9A53-91748D610B0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37185329-3F81-445B-9A53-91748D610B0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47D103C9-B2CB-41DB-9D44-210275FB494A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47D103C9-B2CB-41DB-9D44-210275FB494A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47D103C9-B2CB-41DB-9D44-210275FB494A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47D103C9-B2CB-41DB-9D44-210275FB494A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4484B888-ED14-41A9-98F2-0E1B01329E68}
 	EndGlobalSection
 EndGlobal
