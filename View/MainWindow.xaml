@@ -7,11 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         Background="#142414">
+
+    <Window.DataContext>
+        <local:ViewModel />
+    </Window.DataContext>
+
     <Grid>
         <TextBlock Text="B  A  L  L  S  Y"
                    Foreground="White"
                    FontSize="36"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"/>
+        <Button Margin="335,344,335,38" Command="{Binding ClickCommand}">Text</Button>
+        <TextBox Grid.Row="0" Margin="292,270,292,115"
+                 Text="{Binding Liczba, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
+                 />
     </Grid>
 </Window>
