@@ -5,22 +5,38 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        Background="#142414">
+        Title="Ballsy" Height="600" Width="900"
+        Background="White">
 
     <Window.DataContext>
         <local:ViewModel />
     </Window.DataContext>
 
     <Grid>
-        <TextBlock Text="B  A  L  L  S  Y"
-                   Foreground="White"
-                   FontSize="36"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
-        <Button Margin="335,344,335,38" Command="{Binding ClickCommand}">Text</Button>
-        <TextBox Grid.Row="0" Margin="292,270,292,115"
-                 Text="{Binding Liczba, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"
-                 />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/> <!-- Lewa kolumna: EDYTOR -->
+            <ColumnDefinition Width="*"/>   <!-- Prawa kolumna: STÓŁ BILARDOWY -->
+        </Grid.ColumnDefinitions>
+
+        <!-- EDYTOR -->
+        <Border Grid.Column="0" BorderBrush="Black" BorderThickness="2" Margin="10" Padding="10">
+            <StackPanel VerticalAlignment="Top">
+                <TextBlock Text="EDYTOR" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+                
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
+                    <TextBlock Text="Liczba kul: " VerticalAlignment="Center" FontSize="14"/>
+                    <TextBox Width="60" Margin="5,0,0,0"
+                             Text="{Binding Liczba, UpdateSourceTrigger=PropertyChanged, ValidatesOnExceptions=True}"/>
+                </StackPanel>
+
+                <Button Content="SYMULUJ" Command="{Binding StartCommand}" Margin="0,0,0,10"/>
+                <Button Content="RESET" Command="{Binding ResetCommand}" />
+            </StackPanel>
+        </Border>
+
+        <!-- STÓŁ -->
+        <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2" Margin="10">
+            <Canvas x:Name="BilardCanvas" Background="#142414"/>
+        </Border>
     </Grid>
 </Window>

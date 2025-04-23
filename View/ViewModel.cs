@@ -22,11 +22,11 @@ namespace View
             }
         }
 
-        public ICommand ClickCommand { get; }
+        public ICommand StartCommand { get; }
 
         public ViewModel()
         {
-            ClickCommand = new RelayCommand(OnButtonClick);
+            StartCommand = new RelayCommand(OnButtonClick);
         }
 
         private void OnButtonClick()
