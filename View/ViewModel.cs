@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace View
+namespace Presentation
 {
     public class ViewModel : INotifyPropertyChanged
     {
