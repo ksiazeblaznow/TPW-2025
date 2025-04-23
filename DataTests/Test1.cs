@@ -1,4 +1,5 @@
-﻿using Data;
+﻿using System.Numerics;
+using Data;
 namespace DataTests
 {
     [TestClass]
@@ -7,16 +8,13 @@ namespace DataTests
         [TestMethod]
         public void BallCreationTest()
         {
-
-            float x = 1.0f;
-            float y = 2.0f;
+            Vector2 position = new Vector2(1.0f, 2.0f);
             float radius = 2.5f;
 
-            Ball ball = new Ball(x, y, radius);
+            Ball ball = new Ball(position, radius);
 
             // Assert
-            Assert.AreEqual(x, ball.PositionX);
-            Assert.AreEqual(y, ball.PositionY);
+            Assert.AreEqual(position, ball.Position);
             Assert.AreEqual(radius, ball.Radius);
         }
     }

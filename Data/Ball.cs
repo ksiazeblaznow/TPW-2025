@@ -1,16 +1,27 @@
-﻿namespace Data
+﻿using System.Numerics;
+
+namespace Data
 {
     public class Ball
     {
-        public float PositionX { get; set; }
-        public float PositionY { get; set; }
-        public float Radius { get; set; }
-
-        public Ball(float positionX, float positionY, float radius)
+        private Vector2 _position;
+        private float _radius;
+        public Vector2 Position
         {
-            PositionX = positionX;
-            PositionY = positionY;
-            Radius = radius;
+            get => _position;
+            set => _position = value;
+        }
+        
+        public float Radius
+        {
+            get => _radius;
+            set => _radius = value;
+        }
+
+        public Ball(Vector2 position, float radius)
+        {
+            _position = position;
+            _radius = radius;
         }
     }
 }
