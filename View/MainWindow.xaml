@@ -40,7 +40,25 @@
         <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2" Margin="10">
             <Canvas x:Name="BilardCanvas" Background="#142414"
                     behaviors:CanvasSizeBehavior.ObserveSize="True">
-                <Ellipse Width="20" Height="20" Fill="White"/>
+                <!--<Ellipse Width="20" Height="20" Fill="White"/>-->
+                <ItemsControl ItemsSource="{Binding Balls}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style>
+                            <Setter Property="Canvas.Left" Value="{Binding Position.X}" />
+                            <Setter Property="Canvas.Top" Value="{Binding Position.Y}" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Ellipse Width="{Binding Radius}" Height="{Binding Radius}" Fill="White"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </Canvas>
         </Border>
     </Grid>

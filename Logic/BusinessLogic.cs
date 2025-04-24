@@ -1,13 +1,14 @@
 ﻿using Data;
 using System.Numerics;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Logic
 {
-    public class Logic : ILogic
+    public class BusinessLogic : IBusinessLogic
     {
         public Ball CreateBall(Vector2 position, float radius)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

@@ -8,7 +8,7 @@ using Data;
 
 namespace Logic
 {
-    public interface ILogic
+    public interface IBusinessLogic
     {
         public Ball CreateBall(Vector2 position, float radius);
     }

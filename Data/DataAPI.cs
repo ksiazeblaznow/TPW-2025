@@ -9,6 +9,11 @@ namespace Data
 {
     public interface IBall
     {
-        Ball CreateBall(Vector2 position, float radius);
+        
+    }
+
+    public interface IDataAPI
+    {
+        Ball ConstructBall(Vector2 position, float radius);
     }
 }
