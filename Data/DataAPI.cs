@@ -14,6 +14,8 @@ namespace Data
 
     public interface IDataAPI
     {
-        Ball ConstructBall(Vector2 position, float radius);
+        public Ball ConstructBall(Vector2 position, float radius, Vector2 velocity);
+        public void MoveBall(Ball ball);
+        public void SqueezeBall(Ball ball, float radius);
     }
 }

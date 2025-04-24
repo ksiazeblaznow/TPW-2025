@@ -8,14 +8,40 @@ namespace Logic
     {
         private IDataAPI _dataAPI;
 
-        public BusinessLogic(IDataAPI dataAPI)
+        public BusinessLogic()
         {
-            _dataAPI = dataAPI;
+            _dataAPI = new DataAPI();
         }
 
-        public Ball CreateBall(Vector2 position, float radius)
+        public bool CheckBoundaryCollision(Ball ball, double canvasWidth, double canvasHeight)
         {
-            return _dataAPI.ConstructBall(position, radius);
+            if ((ball.Position.X + ball.Radius >= canvasWidth) || 
+                (ball.Position.X - ball.Radius <= 0) ||
+                (ball.Position.Y + ball.Radius >= canvasHeight) ||
+                (ball.Position.Y - ball.Radius <= 0)) 
+            {
+                return true;
+            } 
+            else
+            {
+                return false;
+            }
+        }
+
+        public Ball CreateBall(Vector2 position, float radius, Vector2 velocity)
+        {
+            return _dataAPI.ConstructBall(position, radius, velocity);
+        }
+
+        public void UpdateBall(Ball ball, double canvasWidth, double canvasHeight)
+        {
+            bool collision = CheckBoundaryCollision(ball, canvasWidth, canvasHeight);
+            _dataAPI.MoveBall(ball);
+            
+            if (collision)
+            {
+                _dataAPI.SqueezeBall(ball, 0.0f);
+            }
         }
     }
 }

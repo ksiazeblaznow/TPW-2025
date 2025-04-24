@@ -10,6 +10,9 @@ namespace Logic
 {
     public interface IBusinessLogic
     {
-        public Ball CreateBall(Vector2 position, float radius);
+        public Ball CreateBall(Vector2 position, float radius, Vector2 velocity);
+
+        public bool CheckBoundaryCollision(Ball ball, double canvasWidth, double canvasHeight);
+        public void UpdateBall(Ball ball, double canvasWidth, double canvasHeight);
     }
 }

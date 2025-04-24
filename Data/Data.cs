@@ -9,9 +9,19 @@ namespace Data
 {
     public class DataAPI : IDataAPI
     {
-        public Ball ConstructBall(Vector2 position, float radius)
+        public Ball ConstructBall(Vector2 position, float radius, Vector2 velocity)
         {
-            return new Ball(position, radius);
+            return new Ball(position, radius, velocity);
+        }
+
+        public void MoveBall(Ball ball)
+        {
+            ball.Position += ball.Velocity;
+        }
+
+        public void SqueezeBall(Ball ball, float radius)
+        {
+            ball.Radius = radius;
         }
     }
 }
