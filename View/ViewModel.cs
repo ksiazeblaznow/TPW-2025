@@ -64,10 +64,11 @@ namespace Presentation
         public ViewModel()
         {
             StartCommand = new RelayCommand(OnButtonClick);
-            IBusinessLogic logic = new BusinessLogic();
+            IDataAPI dataAPI = new DataAPI();
+            IBusinessLogic logic = new BusinessLogic(dataAPI);
 
             Balls = new ObservableCollection<IBall>();
-            Balls.Add((logic.CreateBall(new System.Numerics.Vector2(3.0f, 5.0f), 10.0f)));
+            Balls.Add((logic.CreateBall(new System.Numerics.Vector2(50.0f, 200.0f), 40.0f)));
 
             Balls[0].GetType();
 

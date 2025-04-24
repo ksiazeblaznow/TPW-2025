@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    internal class DataAPI : IDataAPI
+    public class DataAPI : IDataAPI
     {
         public Ball ConstructBall(Vector2 position, float radius)
         {

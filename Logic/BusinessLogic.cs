@@ -6,9 +6,16 @@ namespace Logic
 {
     public class BusinessLogic : IBusinessLogic
     {
+        private IDataAPI _dataAPI;
+
+        public BusinessLogic(IDataAPI dataAPI)
+        {
+            _dataAPI = dataAPI;
+        }
+
         public Ball CreateBall(Vector2 position, float radius)
         {
-            return null;
+            return _dataAPI.ConstructBall(position, radius);
         }
     }
 }
