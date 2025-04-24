@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Presentation.Behaviors;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -7,9 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
+
 namespace Presentation
 {
-    public class ViewModel : INotifyPropertyChanged
+    public class ViewModel : INotifyPropertyChanged, IHaveCanvasSize
     {
         private int _liczba;
         public int Liczba
@@ -19,6 +21,34 @@ namespace Presentation
             {
                 _liczba = value;
                 //OnPropertyChanged();
+            }
+        }
+
+        public void SetCanvasSize(double width, double height)
+        {
+            CanvasWidth = width;
+            CanvasHeight = height;
+        }
+
+        private double _canvasWidth;
+        public double CanvasWidth
+        {
+            get => _canvasWidth;
+            set
+            {
+                _canvasWidth = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _canvasHeight;
+        public double CanvasHeight
+        {
+            get => _canvasHeight;
+            set
+            {
+                _canvasHeight = value;
+                OnPropertyChanged();
             }
         }
 
@@ -32,6 +62,7 @@ namespace Presentation
         private void OnButtonClick()
         {
             Console.WriteLine($"Wprowadzona liczba: {Liczba}");
+            Console.WriteLine($"Canvas: {CanvasWidth} x {CanvasHeight}");
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

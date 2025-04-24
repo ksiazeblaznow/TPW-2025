@@ -4,8 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Presentation"
+        xmlns:behaviors="clr-namespace:Presentation.Behaviors"
         mc:Ignorable="d"
         Title="Ballsy" Height="600" Width="900"
+        ResizeMode="NoResize"
         Background="White">
 
     <Window.DataContext>
@@ -36,7 +38,10 @@
 
         <!-- STÓŁ -->
         <Border Grid.Column="1" BorderBrush="Black" BorderThickness="2" Margin="10">
-            <Canvas x:Name="BilardCanvas" Background="#142414"/>
+            <Canvas x:Name="BilardCanvas" Background="#142414"
+                    behaviors:CanvasSizeBehavior.ObserveSize="True">
+                <Ellipse Width="20" Height="20" Fill="White"/>
+            </Canvas>
         </Border>
     </Grid>
 </Window>
