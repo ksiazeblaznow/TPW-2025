@@ -2,7 +2,7 @@
 
 namespace Data
 {
-    public class Ball
+    public class Ball : IBall
     {
         private Vector2 _position;
         private float _radius;
@@ -22,6 +22,11 @@ namespace Data
         {
             _position = position;
             _radius = radius;
+        }
+
+        public Ball CreateBall(Vector2 position, float radius)
+        {
+            return new Ball(position, radius);
         }
     }
 }

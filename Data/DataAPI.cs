@@ -4,12 +4,11 @@ using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
-using Data;
 
-namespace Logic
+namespace Data
 {
-    public interface ILogic
+    public interface IBall
     {
-        public Ball CreateBall(Vector2 position, float radius);
+        Ball CreateBall(Vector2 position, float radius);
     }
 }
