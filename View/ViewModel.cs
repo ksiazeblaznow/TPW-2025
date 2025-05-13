@@ -19,7 +19,7 @@ namespace Presentation
     public class ViewModel : INotifyPropertyChanged, IHaveCanvasSize
     {
         private readonly DispatcherTimer _timer;
-        public ObservableCollection<IBall> Balls { get; }
+        public ObservableCollection<Ball> Balls { get; }
 
         private int _liczba;
         public int Liczba
@@ -66,21 +66,13 @@ namespace Presentation
         {
             StartCommand = new RelayCommand(OnButtonClick);
             IBusinessLogic logic = new BusinessLogic();
+            IPhysicsLogic physics = new PhysicsLogic();
 
-            Balls = new ObservableCollection<IBall>();
-
-            var velocity = new System.Numerics.Vector2(1.0f, 1.0f);
-            var velocity1 = new System.Numerics.Vector2(2.0f, 3.0f);
-            var velocity2 = new System.Numerics.Vector2(-0.5f, 1.0f);
-
-            Balls.Add((logic.CreateBall(new System.Numerics.Vector2(50.0f, 200.0f), 40.0f, velocity)));
-            Balls.Add((logic.CreateBall(new System.Numerics.Vector2(100.0f, 50.0f), 20.0f, velocity1)));
-            Balls.Add((logic.CreateBall(new System.Numerics.Vector2(200.0f, 300.0f), 10.0f, velocity2)));
-
-            Balls[0].GetType();
+            logic.CreateBalls(3);
+            Balls = logic.GetBalls();
 
             _timer = new DispatcherTimer();
-            _timer.Interval = TimeSpan.FromMilliseconds(5);
+            _timer.Interval = TimeSpan.FromMilliseconds(10);
             _timer.Tick += (s, e) =>
             {
                 //Console.WriteLine("Ticked...");
