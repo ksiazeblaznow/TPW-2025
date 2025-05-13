@@ -9,6 +9,7 @@ namespace Data
         private Vector2 _position;
         private float _radius;
         private Vector2 _velocity;
+        private float _mass;
 
         public float X
         {
@@ -63,11 +64,22 @@ namespace Data
             }
         }
 
+        public float Mass
+        {
+            get => _mass;
+            set => _mass = value;
+        }
+
         public Ball(Vector2 position, float radius, Vector2 velocity)
         {
             _position = position;
             _radius = radius;
             _velocity = velocity;
+
+            // Calculate mass based on radius
+            float density = 11.34f;
+            float volume = (4.0f / 3.0f) * (float)Math.PI * (float)Math.Pow(radius, 3.0f);
+            _mass = density * volume;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
