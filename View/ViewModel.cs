@@ -65,24 +65,27 @@ namespace Presentation
         public ViewModel()
         {
             StartCommand = new RelayCommand(OnButtonClick);
-            IBusinessLogic logic = new BusinessLogic();
-            IPhysicsLogic physics = new PhysicsLogic();
+            //IBusinessLogic logic = new BusinessLogic();
+            //IPhysicsLogic physics = new PhysicsLogic();
+            
+            ILogicAPI logicAPI = new LogicAPI();
+            IBusinessLogic businessLogic = logicAPI.GetBusinessLogic(600.0f, 500.0f);
+            IPhysicsLogic physicsLogic = logicAPI.GetPhysicsLogic(600.0f, 500.0f);
 
-            logic.CreateBalls(3);
-            Balls = logic.GetBalls();
+            businessLogic.CreateBalls(3);
+            Balls = businessLogic.GetBalls();
+
+            physicsLogic.StartAsync(new System.Threading.CancellationToken());
 
             _timer = new DispatcherTimer();
             _timer.Interval = TimeSpan.FromMilliseconds(10);
             _timer.Tick += (s, e) =>
             {
-                //Console.WriteLine("Ticked...");
-                foreach (Ball b in Balls) {
-                    logic.UpdateBall(b, CanvasWidth, CanvasHeight);
-                    //Console.WriteLine(b.Position.ToString());
-                }
-                
+                _timer.Stop();
             };
             _timer.Start();
+
+
         }
 
         private void OnButtonClick()

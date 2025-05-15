@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public class Repository : INotifyPropertyChanged
+    public class Repository
     {
-        public ObservableCollection<Ball> Balls = new();
+        public readonly object Lock = new();
 
-        public event PropertyChangedEventHandler? PropertyChanged;
+        public ObservableCollection<Ball> Balls = new();
     }
 }

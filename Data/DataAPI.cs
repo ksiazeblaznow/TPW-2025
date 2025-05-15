@@ -22,5 +22,7 @@ namespace Data
         public void AddBallToRepository(Ball ball);
 
         public ObservableCollection<Ball> GetListOfBalls();
+
+        public object ExtractRepositoryLock();
     }
 }

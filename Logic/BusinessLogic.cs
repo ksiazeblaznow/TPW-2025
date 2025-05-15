@@ -5,28 +5,12 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace Logic
 {
-    public class BusinessLogic : IBusinessLogic
+    public class BusinessLogic : LogicDependencies, IBusinessLogic
     {
-        private IDataAPI _dataAPI;
-
-        public BusinessLogic()
+        public BusinessLogic(float canvasWidth, float canvasHeight)
         {
-            _dataAPI = new DataAPI();
-        }
-
-        public bool CheckBoundaryCollision(Ball ball, double canvasWidth, double canvasHeight)
-        {
-            if ((ball.Position.X + ball.Radius >= canvasWidth) || 
-                (ball.Position.X - ball.Radius <= 0) ||
-                (ball.Position.Y + ball.Radius >= canvasHeight) ||
-                (ball.Position.Y - ball.Radius <= 0)) 
-            {
-                return true;
-            } 
-            else
-            {
-                return false;
-            }
+            CanvasWidth = canvasWidth;
+            CanvasHeight = canvasHeight;
         }
 
         public Ball CreateBall(Vector2 position, float radius, Vector2 velocity)
@@ -53,17 +37,6 @@ namespace Logic
         public ObservableCollection<Ball> GetBalls()
         {
             return _dataAPI.GetListOfBalls();
-        }
-
-        public void UpdateBall(Ball ball, double canvasWidth, double canvasHeight)
-        {
-            bool collision = CheckBoundaryCollision(ball, canvasWidth, canvasHeight);
-            _dataAPI.MoveBall(ball);
-            
-            if (collision)
-            {
-                _dataAPI.SqueezeBall(ball, 0.0f);
-            }
-        }
+        }        
     }
 }

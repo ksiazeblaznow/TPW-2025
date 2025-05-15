@@ -37,5 +37,9 @@ namespace Data
             ball.Radius = radius;
         }
 
+        public object ExtractRepositoryLock()
+        {
+            return _repository.Lock;
+        }
     }
 }
