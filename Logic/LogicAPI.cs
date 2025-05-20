@@ -20,6 +20,11 @@ namespace Logic
     {
         public bool CheckBoundaryCollision(Ball ball, float canvasWidth, float canvasHeight);
         public void UpdateBall(Ball ball, float canvasWidth, float canvasHeight);
+
+        public void HandleWallCollision(Ball ball);
+        public void HandleBallCollisions();
+        public void ResolveElasticCollision(Ball a, Ball b, Vector2 normal);
+
         Task StartAsync(CancellationToken token);
     }
 

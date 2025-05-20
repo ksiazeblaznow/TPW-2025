@@ -38,6 +38,8 @@ namespace Presentation
         public SolidColorBrush Brush =>
             new SolidColorBrush(Color.FromArgb(_ball.Color.A, _ball.Color.R, _ball.Color.G, _ball.Color.B));
 
+        public float Diameter => _ball.Radius * 2;
+            
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string? name = null)
