@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Drawing;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 
@@ -10,6 +11,7 @@ namespace Data
         private float _radius;
         private Vector2 _velocity;
         private float _mass;
+        public Color Color { get; set; }
 
         public float X
         {
@@ -42,9 +44,13 @@ namespace Data
             get => _position;
             set
             {
-                _position = value;
-                OnPropertyChanged(nameof(X));
-                OnPropertyChanged(nameof(Y));
+                if (_position != value)
+                {
+                    _position = value;
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(X));
+                    OnPropertyChanged(nameof(Y));
+                }
             }
         }
 
@@ -80,6 +86,14 @@ namespace Data
             float density = 11.34f;
             float volume = (4.0f / 3.0f) * (float)Math.PI * (float)Math.Pow(radius, 3.0f);
             _mass = density * volume;
+
+            Color = GenerateRandomColor();
+        }
+
+        private Color GenerateRandomColor()
+        {
+            Random rand = new Random();
+            return Color.FromArgb(255, rand.Next(256), rand.Next(256), rand.Next(256));
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

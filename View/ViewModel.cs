@@ -19,7 +19,7 @@ namespace Presentation
     public class ViewModel : INotifyPropertyChanged, IHaveCanvasSize
     {
         private readonly DispatcherTimer _timer;
-        public ObservableCollection<Ball> Balls { get; }
+        public ObservableCollection<BallViewModel> Balls { get; }
 
         private int _liczba;
         public int Liczba
@@ -73,7 +73,8 @@ namespace Presentation
             IPhysicsLogic physicsLogic = logicAPI.GetPhysicsLogic(600.0f, 500.0f);
 
             businessLogic.CreateBalls(3);
-            Balls = businessLogic.GetBalls();
+            //Balls = businessLogic.GetBalls();
+            Balls = new ObservableCollection<BallViewModel>(businessLogic.GetBalls().Select(b => new BallViewModel(b)));
 
             physicsLogic.StartAsync(new System.Threading.CancellationToken());
 
