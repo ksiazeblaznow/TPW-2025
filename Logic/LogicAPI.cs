@@ -23,7 +23,7 @@ namespace Logic
 
         public void HandleWallCollision(Ball ball);
         public void HandleBallCollisions();
-        public void ResolveElasticCollision(Ball a, Ball b, Vector2 normal);
+        public void ResolveElasticCollision(Ball a, Ball b, Vector2 normal, float dist, float minDist);
 
         Task StartAsync(CancellationToken token);
     }

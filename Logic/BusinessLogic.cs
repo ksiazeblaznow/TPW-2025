@@ -29,7 +29,7 @@ namespace Logic
             Ball ball3 = CreateBall(new Vector2(200.0f, 300.0f), 10.0f,
                 new Vector2(-1.0f, 0.0f));
             Ball ball4 = CreateBall(new Vector2(300.0f, 50.0f), 20.0f,
-                new Vector2(1.0f, 1.4f));
+                new Vector2(1.0f, 1.3f));
 
             _dataAPI.AddBallToRepository(ball1);
             _dataAPI.AddBallToRepository(ball2);

@@ -53,7 +53,7 @@ namespace Logic
 
                     HandleBallCollisions();
                 }
-                   
+                
                 await Task.Delay(TimeSpan.FromMilliseconds(16), token);  // Odczekaj przed kolejnym krokiem symulacji
             }
         }
@@ -97,62 +97,44 @@ namespace Logic
 
                     if (dist < minDist)
                     {
-                        ResolveElasticCollision(a, b, delta / dist);
+                        ResolveElasticCollision(a, b, delta / dist, dist, minDist);
                     }
                 }
             }
         }
 
-        public void ResolveElasticCollision(Ball a, Ball b, Vector2 normal)
+        public void ResolveElasticCollision(Ball a, Ball b, Vector2 normal, float dist, float minDist)
         {
-            // Calculate the vector between centers
-            var delta = b.Position - a.Position;
-            float dist = delta.Length();
+            // Relative velocity
+            Vector2 relativeVelocity = b.Velocity - a.Velocity;
 
-            // Handle the case of exact overlap (avoid division by zero)
-            if (dist == 0f)
-            {
-                // Use relative velocity direction or arbitrary unit vector
-                var rv = a.Velocity - b.Velocity;
-                if (rv.LengthSquared() > 0f)
-                {
-                    normal = Vector2.Normalize(rv);
-                }
-                else
-                {
-                    normal = Vector2.UnitX;
-                }
-                dist = a.Radius + b.Radius;
-            }
-
-            // Compute relative velocity and its component along the normal
-            var relativeVelocity = a.Velocity - b.Velocity;
+            // Velocity along the normal
             float velocityAlongNormal = Vector2.Dot(relativeVelocity, normal);
 
-            // Do not resolve if velocities are separating
-            if (velocityAlongNormal > 0f) return;
+            // If velocities are separating, no need to resolve
+            if (velocityAlongNormal > 0)
+                return;
 
-            // Calculate impulse scalar for perfectly elastic collision
+            // Coefficient of restitution (1 for perfectly elastic collision)
             float restitution = 1.0f;
-            float invMassSum = 1 / a.Mass + 1 / b.Mass;
-            float impulseScalar = -(1 + restitution) * velocityAlongNormal / invMassSum;
 
-            Vector2 impulse = impulseScalar * normal;
-            a.Velocity += impulse / a.Mass;
-            b.Velocity -= impulse / b.Mass;
+            // Calculate impulse scalar
+            float impulseMagnitude = -(1 + restitution) * velocityAlongNormal;
+            impulseMagnitude /= (1 / a.Mass) + (1 / b.Mass);
 
-            // --- POSITION CORRECTION ---
-            // Prevent sinking by projecting them apart
-            const float percent = 0.8f; // usually 20% to 80%
-            const float slop = 0.01f;   // typically small, e.g., 0.01
-            float penetration = (a.Radius + b.Radius) - dist;
+            // Apply impulse to the velocities
+            Vector2 impulse = impulseMagnitude * normal;
 
-            if (penetration > slop)
-            {
-                Vector2 correction = normal * (penetration - slop) / invMassSum * percent;
-                a.Position -= correction * (1 / a.Mass);
-                b.Position += correction * (1 / b.Mass);
-            }
+            a.Velocity -= impulse / a.Mass;
+            b.Velocity += impulse / b.Mass;
+
+            // OPTIONAL: Positional correction to prevent sinking (overlapping)
+            float percent = 0.8f; // usually 20% to 80%
+            float slop = 0.01f;   // small tolerance
+
+            Vector2 correction = MathF.Max(dist - minDist, 0) / ((1 / a.Mass) + (1 / b.Mass)) * percent * normal;
+            a.Position -= correction / a.Mass;
+            b.Position += correction / b.Mass;
         }
     }
 }
