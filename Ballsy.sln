@@ -11,6 +11,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTests", "DataTests\DataTests.csproj", "{DAA7560D-B77A-4683-900B-B1F30425D2A5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogicTests", "LogicTests\LogicTests.csproj", "{CFBA0FEA-207A-40CC-8DF6-F1C12F3A3390}"
+	ProjectSection(ProjectDependencies) = postProject
+		{37185329-3F81-445B-9A53-91748D610B0F} = {37185329-3F81-445B-9A53-91748D610B0F}
+		{47D103C9-B2CB-41DB-9D44-210275FB494A} = {47D103C9-B2CB-41DB-9D44-210275FB494A}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +39,10 @@ Global
 		{DAA7560D-B77A-4683-900B-B1F30425D2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAA7560D-B77A-4683-900B-B1F30425D2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAA7560D-B77A-4683-900B-B1F30425D2A5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFBA0FEA-207A-40CC-8DF6-F1C12F3A3390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFBA0FEA-207A-40CC-8DF6-F1C12F3A3390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFBA0FEA-207A-40CC-8DF6-F1C12F3A3390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFBA0FEA-207A-40CC-8DF6-F1C12F3A3390}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
