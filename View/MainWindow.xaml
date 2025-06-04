@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         Title="Ballsy" Height="600" Width="900"
         ResizeMode="NoResize"
-        Background="White">
+        Background="White"
+        Closed="Window_Closed">
 
     <Window.DataContext>
         <local:ViewModel />

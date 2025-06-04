@@ -9,6 +9,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Logic;
+
 namespace Presentation
 {
     /// <summary>
@@ -19,6 +21,12 @@ namespace Presentation
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Console.WriteLine("Dupa Romana");
+            CollisionLogger.Instance.Stop();
         }
     }
 }

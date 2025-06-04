@@ -135,6 +135,8 @@ namespace Logic
             Vector2 correction = MathF.Max(dist - minDist, 0) / ((1 / a.Mass) + (1 / b.Mass)) * percent * normal;
             a.Position -= correction / a.Mass;
             b.Position += correction / b.Mass;
+
+            CollisionLogger.Instance.LogCollision(a, b);
         }
     }
 }
