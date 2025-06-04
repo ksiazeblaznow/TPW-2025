@@ -15,7 +15,7 @@ namespace Data
 
         public CollisionEvent(Ball a, Ball b)
         {
-            Time = DateTime.UtcNow;
+            Time = DateTime.Now;
             Ball1 = new BallData(a);
             Ball2 = new BallData(b);
         }
