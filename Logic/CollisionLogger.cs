@@ -14,10 +14,16 @@ namespace Logic
         private static readonly Lazy<CollisionLogger> _instance = new(() => new CollisionLogger());
         public static CollisionLogger Instance => _instance.Value;
 
-        private readonly ConcurrentQueue<CollisionEvent> _eventQueue = new();
+        private readonly ConcurrentQueue<ICollisionEvent> _eventQueue = new();
         private readonly string _logFilePath;
         private readonly CancellationTokenSource _cts = new();
         private readonly object _fileLock = new();
+
+        private readonly JsonSerializerOptions _serializerOptions = new()
+        {
+            WriteIndented = false,
+            Converters = { new CollisionEventConverter() }
+        };
 
         private CollisionLogger()
         {
@@ -35,13 +41,18 @@ namespace Logic
             _eventQueue.Enqueue(new CollisionEvent(a, b));
         }
 
+        public void LogWallCollision(Ball a, String wall)
+        {
+            _eventQueue.Enqueue(new WallCollisionEvent(a, wall));
+        }
+
         private async Task ProcessQueueAsync(CancellationToken token)
         {
             while (!token.IsCancellationRequested)
             {
-                await Task.Delay(TimeSpan.FromSeconds(5), token);
+                await Task.Delay(TimeSpan.FromSeconds(1), token);
 
-                var eventsToWrite = new List<CollisionEvent>();
+                var eventsToWrite = new List<ICollisionEvent>();
                 while (_eventQueue.TryDequeue(out var evt))
                     eventsToWrite.Add(evt);
 
@@ -52,7 +63,7 @@ namespace Logic
                         using FileStream stream = new(_logFilePath, FileMode.Append, FileAccess.Write, FileShare.None);
                         foreach (var ev in eventsToWrite)
                         {
-                            string json = JsonSerializer.Serialize(ev);
+                            string json = JsonSerializer.Serialize(ev, _serializerOptions);
                             byte[] jsonBytes = System.Text.Encoding.UTF8.GetBytes(json + Environment.NewLine);
                             stream.Write(jsonBytes, 0, jsonBytes.Length);
                         }

@@ -33,8 +33,8 @@ namespace Logic
 
             _dataAPI.AddBallToRepository(ball1);
             _dataAPI.AddBallToRepository(ball2);
-            _dataAPI.AddBallToRepository(ball3);
-            _dataAPI.AddBallToRepository(ball4);
+            //_dataAPI.AddBallToRepository(ball3);
+            //_dataAPI.AddBallToRepository(ball4);
         }
 
         public ObservableCollection<Ball> GetBalls()

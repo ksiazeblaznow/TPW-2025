@@ -7,7 +7,34 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public class CollisionEvent
+    public class BallData
+    {
+        public float X { get; set; }
+        public float Y { get; set; }
+        public float Radius { get; set; }
+        public float Mass { get; set; }
+        public float VelocityX { get; set; }
+        public float VelocityY { get; set; }
+        public string Color { get; set; }
+
+        public BallData(Ball b)
+        {
+            X = b.X;
+            Y = b.Y;
+            Radius = b.Radius;
+            Mass = b.Mass;
+            VelocityX = b.Velocity.X;
+            VelocityY = b.Velocity.Y;
+            Color = ColorTranslator.ToHtml(b.Color);
+        }
+    }
+
+    public interface ICollisionEvent
+    {
+        DateTime Time { get; }
+    }
+
+    public class CollisionEvent : ICollisionEvent
     {
         public DateTime Time { get; set; }
         public BallData Ball1 { get; set; }
@@ -19,27 +46,19 @@ namespace Data
             Ball1 = new BallData(a);
             Ball2 = new BallData(b);
         }
+    }
 
-        public class BallData
+    public class WallCollisionEvent : ICollisionEvent
+    {
+        public DateTime Time { get; set; }
+        public BallData Ball1 { get; set; }
+        public String Wall {  get; set; }
+
+        public WallCollisionEvent(Ball a, String wall)
         {
-            public float X { get; set; }
-            public float Y { get; set; }
-            public float Radius { get; set; }
-            public float Mass { get; set; }
-            public float VelocityX { get; set; }
-            public float VelocityY { get; set; }
-            public string Color { get; set; }
-
-            public BallData(Ball b)
-            {
-                X = b.X;
-                Y = b.Y;
-                Radius = b.Radius;
-                Mass = b.Mass;
-                VelocityX = b.Velocity.X;
-                VelocityY = b.Velocity.Y;
-                Color = ColorTranslator.ToHtml(b.Color);
-            }
+            Time = DateTime.Now;
+            Ball1 = new BallData(a);
+            Wall = wall;
         }
     }
 }

@@ -9,17 +9,19 @@ namespace LogicTests
     [TestClass]
     public class BusinessLogicTests
     {
-        private BusinessLogic _logic;
+        //private BusinessLogic _logic;
 
         [TestInitialize]
-        public void Setup()
-        {
-            _logic = new BusinessLogic(500, 500);
-        }
+        //public void Setup()
+        //{
+        //    _logic = new BusinessLogic(500, 500);
+        //}
 
         [TestMethod]
         public void CreateBall_CreatesBallWithCorrectProperties()
         {
+            BusinessLogic _logic = new BusinessLogic(500, 500);
+
             Vector2 pos = new Vector2(10, 10);
             float radius = 5;
             Vector2 vel = new Vector2(2, 3);
@@ -34,6 +36,8 @@ namespace LogicTests
         [TestMethod]
         public void CreateBalls_AddsFourBallsToRepository()
         {
+            BusinessLogic _logic = new BusinessLogic(500, 500);
+
             _logic.CreateBalls(4);
 
             ObservableCollection<Ball> balls = _logic.GetBalls();
@@ -44,6 +48,8 @@ namespace LogicTests
         [TestMethod]
         public void GetBalls_ReturnsObservableCollection()
         {
+            BusinessLogic _logic = new BusinessLogic(500, 500);
+
             var balls = _logic.GetBalls();
             Assert.IsInstanceOfType(balls, typeof(ObservableCollection<Ball>));
         }

@@ -25,7 +25,7 @@ namespace Presentation
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            Console.WriteLine("Dupa Romana");
+            //Console.WriteLine("Dupa Romana");
             CollisionLogger.Instance.Stop();
         }
     }

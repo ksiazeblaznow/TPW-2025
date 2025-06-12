@@ -62,17 +62,42 @@ namespace Logic
         {
             // Przesuń punkt odniesienia z lewego górnego rogu do środka kulki
             Vector2 center = ball.Position + new Vector2(ball.Radius, ball.Radius);
+            String hitWall = "";
 
             // Odbicie od lewej i prawej ściany
             if (center.X - ball.Radius < 0 || center.X + ball.Radius > CanvasWidth)
             {
                 ball.Velocity = new Vector2(-ball.Velocity.X, ball.Velocity.Y);
+
+                if(center.X - ball.Radius < 0)
+                {
+                    hitWall = "LeftWall";
+                }
+                else if(center.X + ball.Radius > CanvasWidth)
+                {
+                    hitWall = "RightWall";
+                }
+
+                CollisionLogger.Instance.LogWallCollision(ball, hitWall);
+
             }
 
             // Odbicie od górnej i dolnej ściany
             if (center.Y - ball.Radius < 0 || center.Y + ball.Radius > CanvasHeight)
             {
                 ball.Velocity = new Vector2(ball.Velocity.X, -ball.Velocity.Y);
+
+                if (center.Y - ball.Radius < 0)
+                {
+                    hitWall = "TopWall";
+                }
+                else if (center.Y + ball.Radius > CanvasHeight)
+                {
+                    hitWall = "BottomWall";
+                }
+                
+                CollisionLogger.Instance.LogWallCollision(ball, hitWall);
+
             }
         }
 
